@@ -1,0 +1,20 @@
+<widget id="xpathOverride.widget.xpathOverride" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>xpathOverride</name>
+    <description>Dummy widget</description>
+    <icon/>
+    <properties>
+        <property key="attr" type="attribute">
+            <caption>xpath</caption>
+            <category>Data source</category>
+            <description>attribute with xpath to add to the grid (static xpath in grid will remain)</description>
+            <attributeTypes>
+                <attributeType name="String" />
+            </attributeTypes>
+        </property>
+        <property key="key" type="string" required="true" defaultValue="">
+            <caption>datagrid name</caption>
+            <category>settings</category>
+            <description>the name attribute of the datagrid defined in the modeler. Contact Austin with any questions.</description>
+        </property>
+    </properties>
+</widget>
