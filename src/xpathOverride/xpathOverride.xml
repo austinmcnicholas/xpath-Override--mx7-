@@ -16,5 +16,14 @@
             <category>settings</category>
             <description>the name attribute of the datagrid defined in the modeler. Contact Austin with any questions.</description>
         </property>
+        <property key="gridType" type="enumeration" defaultValue="datagrid" required="true">
+            <caption>Timer event</caption>
+            <category>settings</category>
+            <description/>
+            <enumerationValues>
+                <enumerationValue key="datagrid">datagrid</enumerationValue>
+                <enumerationValue key="listview">listview</enumerationValue>
+            </enumerationValues>
+        </property>
     </properties>
 </widget>

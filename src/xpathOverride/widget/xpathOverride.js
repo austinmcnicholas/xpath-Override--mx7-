@@ -41,10 +41,33 @@ export default defineWidget('xpathOverride', false, {
     update(obj, callback) {
 
         const xpath = obj.get(this.attr);
-        const datasource = this.grid._dataSource;
-        datasource.setConstraints(xpath);
-        this.grid.update();
+        let datasource;
 
+        
+        if (this.datagrid){
+            datasource = this.grid._dataSource;
+
+            if (datasource){
+                datasource.setConstraints(xpath);
+                this.grid.update();
+            } else {
+                console.log("grid datasource is empty");
+            }
+                
+
+        } else {
+            datasource = this.grid._datasource;
+            if (datasource){
+                datasource._staticConstraints = xpath;
+                this.grid.update();
+            } else {
+                console.log("grid datasource is empty");
+            }
+
+        } 
+        
+            console.log('datasource is empty');
+        
 
         if(callback) {callback();}
     },
