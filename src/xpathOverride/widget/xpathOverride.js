@@ -19,7 +19,25 @@ export default defineWidget('xpathOverride', false, {
     postCreate() {
         log.call(this, 'postCreate', this._WIDGET_VERSION);
 
-        const queryName = 'mx-name-' + this.key;
+       
+        
+        //this.grid = registry.byNode(domList[domList.length - 1]);
+
+    },
+
+    update(obj, callback) {
+
+
+        let queryName; 
+        if (this.name){
+            queryName = 'mx-name-' + this.key;
+            console.debug('querying by name');
+        } else {
+            queryName = this.key;
+            console.debug('querying by class');
+        }
+        
+
         const domList = document.getElementsByClassName(queryName);
         console.log(domList);
        
@@ -32,41 +50,42 @@ export default defineWidget('xpathOverride', false, {
             }
 
 
-            };
-        
-        //this.grid = registry.byNode(domList[domList.length - 1]);
+        }
 
-    },
+        if (this.grid){
 
-    update(obj, callback) {
+            const xpath = obj.get(this.attr);
+            let datasource;
 
-        const xpath = obj.get(this.attr);
-        let datasource;
+            if (this.datagrid){
+                datasource = this.grid._dataSource;
 
-        
-        if (this.datagrid){
-            datasource = this.grid._dataSource;
+                if (datasource){
+                    datasource.setConstraints(xpath);
+                    this.grid.update();
+                } else {
+                    console.log("grid datasource is empty");
+                }
+                    
 
-            if (datasource){
-                datasource.setConstraints(xpath);
-                this.grid.update();
             } else {
-                console.log("grid datasource is empty");
-            }
-                
+                datasource = this.grid._datasource;
+                if (datasource){
+                    datasource._staticConstraints = xpath;
+                    this.grid.update();
+                } else {
+                    console.log("grid datasource is empty");
+                }
 
+            } 
+
+            
         } else {
-            datasource = this.grid._datasource;
-            if (datasource){
-                datasource._staticConstraints = xpath;
-                this.grid.update();
-            } else {
-                console.log("grid datasource is empty");
-            }
 
-        } 
-        
-            console.log('datasource is empty');
+            console.log('xpath override did not find the configured grid');
+        }
+            
+            
         
 
         if(callback) {callback();}

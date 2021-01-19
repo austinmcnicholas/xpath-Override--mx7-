@@ -12,9 +12,18 @@
             </attributeTypes>
         </property>
         <property key="key" type="string" required="true" defaultValue="">
-            <caption>datagrid name</caption>
+            <caption>query</caption>
             <category>settings</category>
-            <description>the name attribute of the datagrid defined in the modeler. Contact Austin with any questions.</description>
+            <description>the name or class attribute of the datagrid defined in the modeler. Contact Austin with any questions.</description>
+        </property>
+        <property key="queryType" type="enumeration" defaultValue="name" required="true">
+            <caption>query type</caption>
+            <category>settings</category>
+            <description/>
+            <enumerationValues>
+                <enumerationValue key="name">name</enumerationValue>
+                <enumerationValue key="class">class</enumerationValue>
+            </enumerationValues>
         </property>
         <property key="gridType" type="enumeration" defaultValue="datagrid" required="true">
             <caption>Timer event</caption>
